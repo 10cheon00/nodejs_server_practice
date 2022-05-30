@@ -5,7 +5,7 @@ const getAllUser = (req, res) => {
 };
 
 const getUser = (req, res) => {
-  res.send("id parameter is " + req.params.id);
+  res.send("id parameter is " + req.params.id + "\nquery string is asdf : " + req.query.asdf);
 }
 
 // etc http method handler codes
