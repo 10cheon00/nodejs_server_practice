@@ -4,14 +4,13 @@ const getAllUser = (req, res) => {
   res.json("adfadsf");
 };
 
-const createUser = (req, res) => {
-  //create user
-  res.status(200).json({ "id": 1, "name": "asdfadf" });
+const getUser = (req, res) => {
+  res.send("id parameter is " + req.params.id);
 }
 
 // etc http method handler codes
 
 module.exports = {
   getAllUser,
-  createUser
+  getUser
 }
