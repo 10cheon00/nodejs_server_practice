@@ -1,19 +1,19 @@
 const connection = require("../mysql");
+const User = require("../models/user");
 
 
 const getAllUser = (req, res, next) => {
-  connection.query("SELECT * FROM User;", (err, result, fields) => {
-    if (err) throw err;
-    res.json(result);
+  User.findAll((err, user) => {
+    if (err) res.send(err);
+    res.send(user);
   });
   next();
 };
 
 const getUser = (req, res, next) => {
-  const id = req.params.id;
-  connection.query(`SELECT * FROM User WHERE id=${id}`, (err, result, fields) => {
-    if (err) throw err;
-    res.json(result);
+  User.findById(req.params.id, (err, user) => {
+    if (err) res.send(err);
+    res.send(user);
   });
   next();
 }
