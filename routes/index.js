@@ -18,7 +18,14 @@ const isAuthenticatedOrReadOnly = (req, res, next) => {
   }
 }
 
-router.use("/users", isAuthenticatedOrReadOnly, userRoutes);
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/");
+}
+
+router.use("/users", isAuthenticated, userRoutes);
 router.use("/auth", authRoutes);
 
 module.exports = router;

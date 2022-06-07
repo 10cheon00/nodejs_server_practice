@@ -15,7 +15,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: "1",
-  cookie: { maxAge: 60 * 60 * 1000 },
+  cookie: {
+    maxAge: 60 * 1000 // 이 시간이 지나면 구글 로그인을 다시 시도해야함.
+  },
   resave: true,
   store: new MySQLStore({
     host: "localhost",
@@ -32,14 +34,10 @@ app.use(passport.session());
 app.use("/", routes);
 app.get("/", (req, res, next) => {
   res.send(`<a href="http://localhost:8000/auth/google">link</a>`);
-  next();
-})
-app.use((req, res) => {
-  res.on("finish", () => {
-    console.log(new Date().toLocaleString(), res.statusCode, req.path);
-  });
 });
-
+app.use((req, res) => {
+  res.status(404).send("asdfassdfasf");
+})
 
 app.listen(port, () => {
   console.log("Server is running at localhost :", port);

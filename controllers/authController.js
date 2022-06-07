@@ -13,7 +13,6 @@ const getRedirect =
 
 const getLog = (req, res, next) => {
   res.send(req.user);
-  next();
 }
 
 const logOut = (req, res) => {

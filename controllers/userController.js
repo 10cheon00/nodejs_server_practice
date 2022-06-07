@@ -7,7 +7,6 @@ const getAllUser = (req, res, next) => {
     if (err) res.send(err);
     res.send(user);
   });
-  next();
 };
 
 const getUser = (req, res, next) => {
@@ -15,7 +14,6 @@ const getUser = (req, res, next) => {
     if (err) res.send(err);
     res.send(user);
   });
-  next();
 }
 
 const createUser = (req, res, next) => {
@@ -25,7 +23,6 @@ const createUser = (req, res, next) => {
     }
     res.json(result);
   });
-  next();
 }
 
 module.exports = {
