@@ -28,4 +28,15 @@ User.findById = (id, result) => {
   })
 }
 
+User.findByUsername = (name, result) => {
+  connection.query("SELECT * FROM User WHERE name = ?", name, (err, res) => {
+    if (err) {
+      result(null, err);
+    }
+    else {
+      result(null, res);
+    }
+  })
+}
+
 module.exports = User;

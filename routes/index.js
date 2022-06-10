@@ -25,7 +25,7 @@ const isAuthenticated = (req, res, next) => {
   res.redirect("/");
 }
 
-router.use("/users", isAuthenticated, userRoutes);
+router.use("/users", userRoutes);
 router.use("/auth", authRoutes);
 
 module.exports = router;

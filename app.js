@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: "1",
   cookie: {
-    maxAge: 60 * 1000 // 이 시간이 지나면 구글 로그인을 다시 시도해야함.
+    maxAge: 1000 // 이 시간이 지나면 구글 로그인을 다시 시도해야함.
   },
   resave: true,
   store: new MySQLStore({
@@ -32,11 +32,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", routes);
-app.get("/", (req, res, next) => {
-  res.send(`<a href="http://localhost:8000/auth/google">link</a>`);
-});
+app.use("/", (req, res) => {
+  res.json("Hello World!");
+})
 app.use((req, res) => {
-  res.status(404).send("asdfassdfasf");
+  res.status(404).send("404 Not Found. your path is " + req.path);
 })
 
 app.listen(port, () => {
